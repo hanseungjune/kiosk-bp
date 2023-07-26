@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
-import KioskRentBtn from './button/KioskRentBtn'
-import KioskReturnBtn from './button/KioskReturnBtn'
-import KioskWeather from './weather/KioskWeather'
-import KioskRemoveEventListener from './removeEvent/KioskRemoveEventListener'
-import axios from 'axios'
-import { useState } from 'react'
-import { useParams } from 'react-router'
+import { css } from "@emotion/react";
+import KioskRentBtn from "./button/KioskRentBtn";
+import KioskReturnBtn from "./button/KioskReturnBtn";
+import KioskWeather from "./weather/KioskWeather";
+import KioskRemoveEventListener from "./removeEvent/KioskRemoveEventListener";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const KioskSectionStyle = css`
   display: flex;
@@ -16,11 +16,11 @@ const KioskSectionStyle = css`
   /* border: 1px solid black; */
 
   height: 75vh;
-`
+`;
 
 const KioskButtons = css`
-  position:relative;
-  
+  position: relative;
+
   margin-left: 3vw;
   margin-right: 3vw;
 
@@ -30,27 +30,30 @@ const KioskButtons = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const KioskHomeSection = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [rentCnt, setRentCnt] = useState(0);
   const [returnCnt, setReturnCnt] = useState(0);
 
   const HTTP_API = process.env.REACT_APP_API_MAIN_KEY;
-  // const BrollyURL = `${HTTP_API}/kiosk/home/brolly/${id}`
-  const 
-  // axios({
-  //   method: 'GET',
-  //   url: BrollyURL,
-  // })
-  //   .then((res) => {
-  //     setRentCnt(res.data.brollyCnt)
-  //     setReturnCnt(res.data.emptyCnt)
-  //   })
-  //   .catch((err) => {
-  //     console.log(err)
-  //   })
+  const ShowCnt = async (id) => {
+    if (id) {
+      const response = await axios({
+        method: "GET",
+        url: `${HTTP_API}/kiosk/home/brolly/${id}`,
+      });
+      setRentCnt(response.data.brollyCnt);
+      setReturnCnt(response.data.emptyCnt);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      ShowCnt(id);
+    }
+  }, [id]);
 
   return (
     <div css={KioskSectionStyle}>
@@ -61,7 +64,7 @@ const KioskHomeSection = () => {
       </div>
       <KioskWeather />
     </div>
-  )
-}
+  );
+};
 
 export default KioskHomeSection;

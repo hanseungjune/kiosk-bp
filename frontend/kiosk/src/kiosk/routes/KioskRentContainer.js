@@ -1,93 +1,50 @@
 /** @jsxImportSource @emotion/react */
-import { css, keyframes } from '@emotion/react';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import KioskHeader from '../components/KioskHeader';
-import KioskRentSection from '../components/KioskRentSection';
-
-// 오디오
-import audioFile from '../assets/KioskRentContainerAudio.mp3'
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-
-const AudioPlayStyle = css`
-  width: 4rem;
-  height: 4rem;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  background-color: #B1B2FF;
-  
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  
-  border-radius: 50%;
-`
-// 오디오
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const fadeInStyles = css`
-  animation: ${fadeIn} 1s ease-in;
-`;
-
-const KioskRentStyle = css`
-  box-sizing: border-box;
-  width : 100vw;
-  height : 100vh;
-  background-color: #EEF1FF;
-`
-
-// 위에는 Emotion.js 입니다.
-// 밑에는 JS 입니다.
+import { useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import KioskHeader from "../components/KioskHeader";
+import KioskRentSection from "../components/KioskRentSection";
+import Player from "../components/button/Player";
+import audioFile from "../assets/KioskRentContainerAudio.mp3";
+import { AudioPlayStyle, KioskRentStyle, fadeInStyles } from "../style/style";
+import { setPlaying } from "../redux/actions/audioActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const KioskRentContainer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // 오디오
-  const [audio, setAudio] = useState(new Audio(audioFile));
-
-  const audioPlay = () => {
-    if (audio.volume === 0) {
-      audio.currentTime = 0
-      audio.volume = 1
-      audio.play();
-    } else {
-      audio.currentTime = 100
-      audio.volume = 0
-    }
-  }
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const audio = useSelector((state) => state.audio.audio);
 
   useEffect(() => {
-    audio.volume = 1
-    audio.play();
-    return () => {
-      audio.pause();
+    let audioMessage = "";
+    // 페이지가 로드되었을 때 오디오를 재생하는 부분
+    if (audio) {
+      audio.currentTime = 0;
+      dispatch(setPlaying(true));
+      audio.play().catch((error) => (audioMessage = error));
     }
-  }, [audio.volume])
-  // 오디오
+  }, [audio, dispatch]);
 
-  // 홈화면으로
-  const miliUnit = 1000
-  const seconds = 300 * miliUnit
+  // 다른 페이지로 전환할 때, 오디오 꺼짐
+  useEffect(() => {
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        dispatch(setPlaying(false));
+      }
+    };
+  }, [location.pathname, audio, dispatch]);
+
   useEffect(() => {
     let myTimer = setTimeout(() => {
-      navigate(`/kiosk/${id}`)
-    }, seconds)
+      navigate(`/kiosk/${id}`);
+    }, 300000);
     return () => {
-      clearTimeout(myTimer)
-    }
-  }, [id, seconds, miliUnit, navigate])
+      clearTimeout(myTimer);
+    };
+  }, [id, navigate]);
 
   return (
     <div css={fadeInStyles}>
@@ -98,14 +55,12 @@ const KioskRentContainer = () => {
         <section>
           <KioskRentSection />
         </section>
-        {/* 오디오 */}
-        <div css={AudioPlayStyle} id='audioplay' onClick={audioPlay}>
-          <VolumeUpIcon fontSize='large' />
+        <div css={AudioPlayStyle}>
+          <Player url={audioFile} location={location} />
         </div>
-        {/* 오디오 */}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default KioskRentContainer;

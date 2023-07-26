@@ -1,26 +1,7 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import KioskBranchLocation from "../components/button/KioskBranchLocation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { HomeDiv, HomeSemiDiv } from "../style/style";
 import axios from "axios";
-
-const HomeDiv = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-`;
-
-const HomeSemiDiv = css`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, auto));
-  column-gap: 10px;
-  row-gap: 10px;
-  width: 90vw;
-  height: 90%;
-`;
 
 function Home() {
   const [items, setItems] = useState([]);
