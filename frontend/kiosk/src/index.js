@@ -4,6 +4,11 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store'
 
+if (process.env.NODE_ENV === 'development') {
+    const { worker } = require('./mocks/browser')
+    worker.start();
+}
+
 const container = document.getElementById("root");
 render(
     <Provider store={store}>

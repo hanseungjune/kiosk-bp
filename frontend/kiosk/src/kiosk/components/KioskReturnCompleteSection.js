@@ -235,7 +235,7 @@ const KioskReturnCompleteSection = () => {
   const price = Number(queryParams.get('price')).toLocaleString('ko-KR');
   const refundMoney = Number(queryParams.get('refundMoney')).toLocaleString('ko-KR');
 
-  const KioskNameURL = `https://bp.ssaverytime.kr:8080/api/kiosk/home/kiosk-name?id=${id}`
+  // const KioskNameURL = `https://bp.ssaverytime.kr:8080/api/kiosk/home/kiosk-name?id=${id}`
 
   // 오디오
   const [audio, setAudio] = useState(new Audio(audioFile));
@@ -277,20 +277,20 @@ const KioskReturnCompleteSection = () => {
     if (isBrolly == 1) {
       setIsReturn(true)
     }
-    axios({
-      method:'GET',
-      url: KioskNameURL,
-    })
-    .then((res) => setKioskName(res.data))
-    .catch((err) => console.log(err))
+    // axios({
+    //   method:'GET',
+    //   url: KioskNameURL,
+    // })
+    // .then((res) => setKioskName(res.data))
+    // .catch((err) => console.log(err))
 
-    const timer = setTimeout(() => {
-      navigate(`/kiosk/${id}`);
-    }, 30000);
+    // const timer = setTimeout(() => {
+    //   navigate(`/kiosk/${id}`);
+    // }, 30000);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    // return () => {
+    //   clearTimeout(timer);
+    // };
   }, [isReturn])
 
   return (

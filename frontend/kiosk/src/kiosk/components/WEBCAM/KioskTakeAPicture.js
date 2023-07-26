@@ -237,24 +237,24 @@ const KioskTakeAPicture = (data) => {
 
     setLoading(true);
 
-    axios({
-      method: 'POST',
-      url: 'https://bp.ssaverytime.kr:8080/api/brolly/return',
-      data: {
-        'brollyName': qrdata,
-        'caseId': id,
-        'imgData': imgURL
-      }
-    })
-      .then((res) => {
-        console.log(res.data.success)
-        if (!res.data.success) {
-          clearImage();
-          setOpen(true);
-          setLoading(false);
-        }
-      })
-      .catch((err) => console.log(err));
+    // axios({
+    //   method: 'POST',
+    //   url: 'https://bp.ssaverytime.kr:8080/api/brolly/return',
+    //   data: {
+    //     'brollyName': qrdata,
+    //     'caseId': id,
+    //     'imgData': imgURL
+    //   }
+    // })
+    //   .then((res) => {
+    //     console.log(res.data.success)
+    //     if (!res.data.success) {
+    //       clearImage();
+    //       setOpen(true);
+    //       setLoading(false);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   // clear out the image from the screen

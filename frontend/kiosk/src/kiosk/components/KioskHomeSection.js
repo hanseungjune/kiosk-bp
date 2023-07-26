@@ -32,30 +32,25 @@ const KioskButtons = css`
   align-items: center;
 `
 
-// 위에는 Emotion.js 입니다.
-// 밑에는 JS 입니다.
-
-
-// 위에는 JS 입니다.
-// 밑에는 JSX 입니다.
-
 const KioskHomeSection = () => {
   const { id } = useParams()
   const [rentCnt, setRentCnt] = useState(0);
   const [returnCnt, setReturnCnt] = useState(0);
 
-  const BrollyURL = `https://bp.ssaverytime.kr:8080/api/kiosk/home/brolly/${id}`
-  axios({
-    method: 'GET',
-    url: BrollyURL,
-  })
-    .then((res) => {
-      setRentCnt(res.data.brollyCnt)
-      setReturnCnt(res.data.emptyCnt)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  const HTTP_API = process.env.REACT_APP_API_MAIN_KEY;
+  // const BrollyURL = `${HTTP_API}/kiosk/home/brolly/${id}`
+  const 
+  // axios({
+  //   method: 'GET',
+  //   url: BrollyURL,
+  // })
+  //   .then((res) => {
+  //     setRentCnt(res.data.brollyCnt)
+  //     setReturnCnt(res.data.emptyCnt)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err)
+  //   })
 
   return (
     <div css={KioskSectionStyle}>
