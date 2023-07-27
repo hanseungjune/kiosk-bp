@@ -15,7 +15,7 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 ///////////////////////////////// 모달 //////////////////////////////////////
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   KioskCameraCheckDiv,
   SpinnerDiv,
@@ -28,11 +28,12 @@ import {
   videoSize,
 } from "../style/returnStyle";
 import useGetVideo from "../hooks/useGetVideo";
+import { resetQRCode, setQRCode } from "../redux/actions/qrdataAction";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const KioskReturnCameraSection = ({audiofile}) => {
+const KioskReturnCameraSection = ({ audiofile }) => {
   const [iscapture, setIscapture] = useState(false);
   const { id } = useParams();
   const [open, setOpen] = useState(false);
@@ -41,6 +42,7 @@ const KioskReturnCameraSection = ({audiofile}) => {
   let videoRef = useRef(null);
   let photoRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useGetVideo(videoRef);
 
@@ -82,13 +84,14 @@ const KioskReturnCameraSection = ({audiofile}) => {
           imgData: imgURL,
         },
       });
-
+      
       if (!response.data.success) {
         clearImage();
         setOpen(true);
         setLoading(false);
       } else {
         // 정상 반납
+        dispatch(resetQRCode());
         navigate(`/kiosk/${id}/return/complete/${1}/${1}`);
       }
     } catch (error) {

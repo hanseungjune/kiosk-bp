@@ -46,4 +46,38 @@ export const handlers = [
       );
     }
   ),
+  rest.get(
+    "https://bp.ssaverytime.kr:8080/api/kiosk/home/kiosk-name",
+    (req, res, ctx) => {
+      const { id } = req.params;
+      console.log(id);
+      let kioskName;
+      switch (id) {
+        case "1":
+          kioskName = "Kiosk 1";
+          break;
+        case "2":
+          kioskName = "Kiosk 2";
+          break;
+        case "3":
+          kioskName = "Kiosk 3";
+          break;
+        default:
+          kioskName = "Unknown Kiosk";
+          break;
+      }
+
+      return res(
+        ctx.status(200),
+        ctx.json({
+          kioskName: kioskName,
+          refundMoney: 50000,
+          depositeMoney: 100000,
+          period: 1,
+          price: 5000,
+          refundMoney: 95000,
+        })
+      );
+    }
+  ),
 ];

@@ -1,4 +1,5 @@
 import { css, keyframes } from "@emotion/react";
+import ReceiptImg from "../assets/ReceiptWhite.png";
 
 export const KioskReturnSectionStyle = css`
   display: flex;
@@ -372,4 +373,202 @@ export const SpinnerDiv = css`
   width: "40vw";
   height: "20vh";
   background-color: "white";
+`;
+
+export const KioskReturnReceiptStyles = css`
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #eef1ff;
+`;
+
+export const KioskReturnReceiptStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #eef1ff;
+
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const KioskReceiptMent = css`
+  width: 50vw;
+  height: 70vh;
+
+  position: absolute;
+  bottom: 5%;
+  left: 4%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 1.7em;
+    padding-top: 3vh;
+    padding-left: 4.2vw;
+    margin: 0;
+    margin-bottom: 3vh;
+    background-color: #b1b2ff;
+    border-radius: 40px;
+    width: 45vw;
+    height: 10vh;
+  }
+
+  span {
+    font-size: 1.5em;
+  }
+`;
+
+export const KioskReturnReceiptView = css`
+  position: absolute;
+  bottom: 0%;
+  right: 5%;
+
+  width: 45vw;
+  height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  ol {
+    margin-left: 2.5vw;
+    li {
+      font-size: 20px;
+    }
+  }
+`;
+
+export const KioskReturnReceipt = css`
+  width: 38vw;
+  height: 100%;
+
+  background: url(${ReceiptImg}) no-repeat center;
+  background-size: contain;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .ReceiptTitle,
+  .ReceiptTotal {
+    padding-left: 10%;
+  }
+
+  .BranchName {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0px;
+    /* border-bottom: 3px solid #404040; */
+  }
+
+  .Payment {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 3%;
+    border-bottom: 3px dashed #404040;
+    span {
+      font-weight: bold;
+      font-size: 1.95rem;
+    }
+  }
+
+  .ReceiptDetailView {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 10%;
+
+    .FirstHorizon {
+      width: 100%;
+      height: 10%;
+    }
+
+    .SecondHorizon {
+      margin-top: 3%;
+      border-top: 3px dashed #404040;
+      margin-bottom: 5%;
+
+      width: 100%;
+      height: 3vh;
+    }
+
+    .ReceiptDetail {
+      width: 95%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 1.25em;
+      }
+    }
+
+    .ReceiptDetailRefunds {
+      width: 95%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        display: block;
+        font-size: 2em;
+        font-weight: bold;
+      }
+    }
+  }
+`;
+
+/////////////////////////////////// 반납안되었을때 /////////////////////////////////
+
+export const KioskNoReturnStyle = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  left: 40%;
+
+  height: 80vh;
+  .KioskNoReturnGuide {
+    font-size: 32px;
+  }
+
+  .KioskNoReturnGuideHolderBtn {
+    width: 600px;
+    height: 100px;
+    background-color: #b1b2ff;
+    border-radius: 45px;
+
+    font-size: 2.2rem;
+    padding-top: 2.5vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    p {
+      font-size: 1em;
+    }
+  }
+  button {
+    width: 450px;
+    height: 50px;
+  }
 `;

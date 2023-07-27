@@ -1,5 +1,27 @@
 import { css, keyframes } from "@emotion/react";
 
+export const AudioPlayReturnStyle = css`
+  width: 4rem;
+  height: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #b1b2ff;
+
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  border-radius: 50%;
+
+  & > span {
+    font-size: 1rem;
+  }
+`;
+
 export const AudioPlayStyle = css`
   width: 4rem;
   height: 4rem;
