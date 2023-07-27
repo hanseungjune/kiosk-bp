@@ -3,7 +3,11 @@ import KioskHeader from "../components/KioskHeader";
 import KioskRentSection from "../components/KioskRentSection";
 import Player from "../components/button/Player";
 import audioFile from "../assets/KioskRentContainerAudio.mp3";
-import { AudioPlayStyle, KioskRentStyle, fadeInStyles } from "../style/style";
+import {
+  AudioPlayStyle,
+  KioskRentStyle,
+  fadeInStyles,
+} from "../style/rentStyle";
 
 const KioskRentContainer = () => {
   return (

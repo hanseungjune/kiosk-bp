@@ -2,7 +2,7 @@
 import {
   AudioPlayStyle,
   KioskRentCompleteSectionStyle,
-} from "../../style/style";
+} from "../../style/rentStyle";
 import Player from "./Player";
 import NoRentaudioFile from "../../assets/KioskNoRentAudio.mp3";
 

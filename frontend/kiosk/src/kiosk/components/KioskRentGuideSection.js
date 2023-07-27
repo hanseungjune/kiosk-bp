@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom/dist";
 import audioFile from "../assets/KioskRentGuideContainerAudio.mp3";
 import Player from "../components/button/Player";
-import { AudioPlayStyle } from "./../style/style";
+import { AudioPlayStyle } from "./../style/rentStyle";
 import useAudioCall from "../hooks/useAudioCall";
 
 const KioskRentSectionGuideStyle = css`

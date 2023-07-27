@@ -8,7 +8,7 @@ import {
   KioskRentQR,
   KioskRentSectionStyle,
   QR,
-} from "../style/style";
+} from "../style/rentStyle";
 
 const KioskRentSection = () => {
   return (
