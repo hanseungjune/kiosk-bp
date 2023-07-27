@@ -189,35 +189,66 @@ export const KioskReturnStyle = css`
   }
 `;
 
+export const KioskReturnCameraStyle = css`
+  box-sizing: border-box;
+  border: 1px solid black;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const header = css`
+  width: 100vw;
+  height: 10vh !important;
+  z-index: 6;
+
+  position: fixed;
+  top: 0px;
+`;
+
+export const section = css`
+  height: 90vh !important;
+`;
+
 export const KioskCameraCheckDiv = css`
   width: 1024px;
   height: 600px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const videoSize = css`
   width: 100vw !important;
-  height: 130vh;
-  max-width: 200vw;
+  height: 100vh;
 
-  position: fixed;
-  top: -10px;
-  transform: translate(-50%, -50%);
-
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
+  position: absolute;
+  top: 0%;
 `;
 
 export const canvasDiv = css`
   width: 730px !important;
   max-width: 1200px;
 
-  position: fixed;
+  position: relative;
   top: 10vh;
 
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
+
+  & > canvas {
+    position: absolute;
+    top: -200px;
+    right: -145px;
+  }
 `;
 
 export const canvasSize = css`
@@ -228,14 +259,13 @@ export const canvasSize = css`
   right: 0px;
 `;
 
-// 배경 애니메이션
 export const countDownDivStyle = ({ isActive }) => css`
   width: 100vw;
   height: 100vh;
 
   position: absolute;
   top: -60px;
-  right: 0;
+  right: -145px;
 
   display: flex;
   justify-content: center;
@@ -246,9 +276,6 @@ export const countDownDivStyle = ({ isActive }) => css`
   transition-timing-function: ease-out;
   transition-duration: 1s;
 `;
-
-// 글씨 애니메이션
-// grow && fadeOut
 
 export const fadeIn = keyframes`
   from {
@@ -311,7 +338,7 @@ export const buttonDiv = css`
   justify-content: space-between;
   align-items: center;
 
-  position: fixed;
+  position: relative;
   top: 68vh;
 
   button {
@@ -325,13 +352,13 @@ export const buttonDiv = css`
     border-radius: 20px;
     border: 1px solid transparent;
   }
-`;
 
-export const TakeAPictureBtn = css`
-  position: absolute;
-
-  left: 50%;
-  transform: translate(-50%, 0%);
+  .takeAPictureBtn {
+    position: absolute;
+    left: 50% !important;
+    bottom: 50% !important;
+    transform: translate(-50%, 50%);
+  }
 `;
 
 export const SpinnerDiv = css`

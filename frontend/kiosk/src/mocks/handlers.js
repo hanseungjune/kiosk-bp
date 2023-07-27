@@ -33,4 +33,17 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(response));
     }
   ),
+  rest.post(
+    "https://bp.ssaverytime.kr:8080/api/brolly/return",
+    (req, res, ctx) => {
+      const { brollyName, caseId, imgData } = req.body;
+
+      return res(
+        ctx.status(200),
+        ctx.json({
+          success: true,
+        })
+      );
+    }
+  ),
 ];

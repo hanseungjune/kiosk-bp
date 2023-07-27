@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource @emotion/react */
-import { KioskCameraCheckDiv } from "../style/returnStyle";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 ///////////////////////////////// 모달 //////////////////////////////////////
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -14,9 +14,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
+///////////////////////////////// 모달 //////////////////////////////////////
+import { useSelector } from "react-redux";
 import {
+  KioskCameraCheckDiv,
   SpinnerDiv,
-  TakeAPictureBtn,
   buttonCenter,
   buttonDiv,
   canvasDiv,
@@ -25,44 +27,22 @@ import {
   countDownStyle,
   videoSize,
 } from "../style/returnStyle";
-import { useSelector } from "react-redux";
-///////////////////////////////// 모달 //////////////////////////////////////
+import useGetVideo from "../hooks/useGetVideo";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const KioskReturnCameraSection = () => {
+const KioskReturnCameraSection = ({audiofile}) => {
   const [iscapture, setIscapture] = useState(false);
   const { id } = useParams();
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-
   const qrdata = useSelector((state) => state.qrCode.data);
-
   let videoRef = useRef(null);
   let photoRef = useRef(null);
+  const navigate = useNavigate();
 
-  // get access to user webcamera
-  const getVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({
-        video: true,
-      })
-      .then((stream) => {
-        let video = videoRef.current;
-        if (video.paused) {
-          video.srcObject = stream;
-          video.play();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  useEffect(() => {
-    getVideo();
-  }, [videoRef, getVideo]);
+  useGetVideo(videoRef);
 
   // to take picture of user
   const takePicture = () => {
@@ -87,37 +67,41 @@ const KioskReturnCameraSection = () => {
   // save canvas Image in server
   const [loading, setLoading] = useState(false);
 
-  const saveImage = () => {
+  const saveImage = async () => {
     // 데이터 URL로 그대로 보내기
     const canvas = document.getElementById("$canvas");
     const imgURL = canvas.toDataURL("image/png");
+    try {
+      setLoading(true);
+      const response = await axios({
+        method: "POST",
+        url: "https://bp.ssaverytime.kr:8080/api/brolly/return",
+        data: {
+          brollyName: qrdata,
+          caseId: id,
+          imgData: imgURL,
+        },
+      });
 
-    setLoading(true);
-
-    // axios({
-    //   method: 'POST',
-    //   url: 'https://bp.ssaverytime.kr:8080/api/brolly/return',
-    //   data: {
-    //     'brollyName': qrdata,
-    //     'caseId': id,
-    //     'imgData': imgURL
-    //   }
-    // })
-    //   .then((res) => {
-    //     console.log(res.data.success)
-    //     if (!res.data.success) {
-    //       clearImage();
-    //       setOpen(true);
-    //       setLoading(false);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
+      if (!response.data.success) {
+        clearImage();
+        setOpen(true);
+        setLoading(false);
+      } else {
+        // 정상 반납
+        navigate(`/kiosk/${id}/return/complete/${1}/${1}`);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // clear out the image from the screen
   const clearImage = () => {
     setIscapture(false);
-    // 6초로 세팅
+    // 10초로 세팅
     setTimeLeft(10);
 
     let photo = photoRef.current;
@@ -173,7 +157,7 @@ const KioskReturnCameraSection = () => {
       <div css={buttonCenter}>
         <div css={buttonDiv}>
           {iscapture ? null : isActive ? null : (
-            <button onClick={takePicture} css={TakeAPictureBtn}>
+            <button onClick={takePicture} class="takeAPictureBtn">
               촬영하기
             </button>
           )}

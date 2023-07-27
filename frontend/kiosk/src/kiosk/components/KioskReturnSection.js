@@ -19,6 +19,7 @@ import { setQRCode } from "../redux/actions/qrdataAction";
 import Player from "./button/Player";
 import { AudioPlayStyle } from "../style/rentStyle";
 import audiofile from "../assets/KioskReturnContainerAudio.mp3";
+import { setPlaying } from "../redux/actions/audioActions";
 
 const KioskReturnSection = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const KioskReturnSection = () => {
 
   useEffect(() => {
     if (data !== "") {
+      dispatch(setPlaying(false));
       navigate(`/kiosk/${id}/return/camera`);
     }
   }, [data]);
@@ -38,7 +40,6 @@ const KioskReturnSection = () => {
         <div css={QR}>
           <div css={KioskReturnQRCheckSection}>
             <div css={QRBox}></div>
-            {/* <div css={QRBlackBox}></div> */}
             <div css={QRLine} />
             <QrReader
               onResult={(result, error) => {
