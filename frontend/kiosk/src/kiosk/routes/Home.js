@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import KioskBranchLocation from "../components/button/KioskBranchLocation";
 import { useEffect, useState } from "react";
 import { HomeDiv, HomeSemiDiv } from "../style/style";

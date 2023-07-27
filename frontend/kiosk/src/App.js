@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import "./App.css"
-import routes from './routes'
-import { Global, css } from '@emotion/react'
-import { cloneElement } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import routes from "./routes";
+import { Global, css } from "@emotion/react";
+import { cloneElement } from "react";
 
 function App() {
   return (
@@ -14,6 +14,13 @@ function App() {
           }
           body {
             overflow: hidden;
+          }
+          #root,
+          html,
+          .App {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
           }
         `}
       />

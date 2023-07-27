@@ -1,7 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom/dist";
+import { Link, useNavigate } from "react-router-dom/dist";
+import audioFile from "../assets/KioskRentGuideContainerAudio.mp3";
+import Player from "../components/button/Player";
+import { AudioPlayStyle } from "./../style/style";
+import useAudioCall from "../hooks/useAudioCall";
 
 const KioskRentSectionGuideStyle = css`
   display: flex;
@@ -42,12 +46,10 @@ const KioskRentSectionGuideStyle = css`
   }
 `;
 
-// 위에는 Emotion.js 입니다.
-// 밑에는 JS 입니다.
-
 const KioskRentGuideSection = () => {
   const { holderNum, id } = useParams();
   const navigate = useNavigate();
+  const { stop } = useAudioCall(audioFile);
 
   return (
     <div css={KioskRentSectionGuideStyle}>
@@ -56,20 +58,21 @@ const KioskRentGuideSection = () => {
       </div>
       <span className="KioskRentSectionCompleteGuide">우산을 가져가주세요</span>
       <div>
-        <button
-          onClick={() => {
-            navigate(`/kiosk/${id}/rent/complete/${holderNum}/${0}`);
-          }}
+        <Link
+          to={`/kiosk/${id}/rent/complete/${holderNum}/${0}`}
+          onClick={stop}
         >
-          2. 우산을 가져가지 않았을 때,
-        </button>
-        <button
-          onClick={() => {
-            navigate(`/kiosk/${id}/rent/complete/${holderNum}/${1}`);
-          }}
+          <button>1. 우산을 가져가지 않았을 때,</button>
+        </Link>
+        <Link
+          to={`/kiosk/${id}/rent/complete/${holderNum}/${1}`}
+          onClick={stop}
         >
-          2. 우산을 제대로 잘 가져갔을 때,
-        </button>
+          <button>2. 우산을 제대로 잘 가져갔을 때,</button>
+        </Link>
+      </div>
+      <div css={AudioPlayStyle}>
+        <Player url={audioFile} />
       </div>
     </div>
   );

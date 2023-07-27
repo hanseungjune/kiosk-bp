@@ -1,8 +1,8 @@
-import useAudio from "../../hooks/useAudio";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import useAudioCall from "../../hooks/useAudioCall";
 
-const Player = ({ url, location }) => {
-  const [playing, toggle] = useAudio(url, location);
+const Player = ({ url }) => {
+  const [id, navigate, location, playing, toggle] = useAudioCall(url);
 
   return (
     <>

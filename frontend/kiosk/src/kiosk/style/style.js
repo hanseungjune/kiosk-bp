@@ -157,12 +157,13 @@ export const KioskRentCompleteSectionStyle = css`
   justify-content: center;
   align-items: center;
 
-  & > :nth-child(1) {
-    font-size: 2.4rem;
+  & > span:nth-of-type(1) {
+    font-size: 3rem;
+    margin-bottom: 0.2rem;
   }
 
-  & > :nth-child(2) {
-    font-size: 1.4rem;
+  & > span:nth-of-type(2) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -176,9 +177,9 @@ export const KioskRentSectionStyle = css`
   align-items: center;
 
   height: 85vh;
-`
+`;
 export const KioskRentQR = css`
-  position:absolute;
+  position: absolute;
   left: 2vw;
   bottom: 10vh;
 
@@ -190,16 +191,16 @@ export const KioskRentQR = css`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const QR = css`
   width: 400px;
   height: 400px;
-  
+
   svg > path:first-of-type {
-    fill: #EEF1FF;
+    fill: #eef1ff;
   }
-`
+`;
 
 export const KioskRentMethod = css`
   width: 64vw;
@@ -227,8 +228,8 @@ export const KioskRentMethod = css`
     li {
       font-size: 1.65rem;
     }
-  } 
-`
+  }
+`;
 
 export const KioskRentMethodTitle = css`
   position: relative;
@@ -240,14 +241,14 @@ export const KioskRentMethodTitle = css`
   justify-content: center;
   align-items: flex-start;
 
-  span{
+  span {
     font-size: 80px;
   }
-`
+`;
 
 export const BPlogoImageSize = css`
   position: absolute;
   top: -5px;
   left: 0px;
   width: 80px;
-`
+`;
