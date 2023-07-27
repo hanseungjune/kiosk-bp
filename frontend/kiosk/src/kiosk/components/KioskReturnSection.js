@@ -23,9 +23,8 @@ const KioskReturnSection = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.qrCode.data);
 
-  console.log(data);
-
   useEffect(() => {
+    console.log(data)
     if (data !== "") {
       navigate(`/kiosk/${id}/return/camera`);
     }
@@ -42,8 +41,7 @@ const KioskReturnSection = () => {
             <QrReader
               onResult={(result, error) => {
                 if (result) {
-                  console.log(result)
-                  // dispatch(setQRCode(result?.text));
+                  dispatch(setQRCode(result?.text));
                 }
               }}
             />
@@ -53,9 +51,7 @@ const KioskReturnSection = () => {
       <div css={KioskReturnMethod}>
         <div css={KioskReturnMethodTitle}>
           <img css={PictureImgSize} src={PictureImg} alt="PictureImg" />
-          <Link to={`/kiosk/${id}/return/camera`}>
-            <span>반납 방법</span>
-          </Link>
+          <span>반납 방법</span>
         </div>
         <ul>
           <li>우산의 QR을 현재화면에 체크해주세요.</li>
