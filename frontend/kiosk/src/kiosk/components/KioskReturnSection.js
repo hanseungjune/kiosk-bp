@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect } from "react";
 import { QrReader } from "react-qr-reader";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PictureImg from "../assets/PictureImg.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,6 +16,9 @@ import {
   QRLine,
 } from "../style/returnStyle";
 import { setQRCode } from "../redux/actions/qrdataAction";
+import Player from "./button/Player";
+import { AudioPlayStyle } from "../style/rentStyle";
+import audiofile from "../assets/KioskReturnContainerAudio.mp3";
 
 const KioskReturnSection = () => {
   const navigate = useNavigate();
@@ -24,7 +27,6 @@ const KioskReturnSection = () => {
   const data = useSelector((state) => state.qrCode.data);
 
   useEffect(() => {
-    console.log(data)
     if (data !== "") {
       navigate(`/kiosk/${id}/return/camera`);
     }
@@ -60,6 +62,9 @@ const KioskReturnSection = () => {
           <li>우산 케이스가 열리면 우산을 넣어주세요.</li>
           <li>보증금이 환급되었는지 확인해주세요.</li>
         </ul>
+      </div>
+      <div css={AudioPlayStyle}>
+        <Player url={audiofile} />
       </div>
     </div>
   );

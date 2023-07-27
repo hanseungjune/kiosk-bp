@@ -25,6 +25,7 @@ const useAudio = (url) => {
       audio.play(); // 오디오를 재생합니다.
     } else if (!playing && audio) {
       audio.pause(); // 오디오를 일시 정지합니다.
+      dispatch(setPlaying(false));
     }
   }, [playing, audio]);
 

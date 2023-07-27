@@ -188,3 +188,161 @@ export const KioskReturnStyle = css`
     right: 10px;
   }
 `;
+
+export const KioskCameraCheckDiv = css`
+  width: 1024px;
+  height: 600px;
+`;
+
+export const videoSize = css`
+  width: 100vw !important;
+  height: 130vh;
+  max-width: 200vw;
+
+  position: fixed;
+  top: -10px;
+  transform: translate(-50%, -50%);
+
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+`;
+
+export const canvasDiv = css`
+  width: 730px !important;
+  max-width: 1200px;
+
+  position: fixed;
+  top: 10vh;
+
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+`;
+
+export const canvasSize = css`
+  width: 100vw;
+  height: 130vh;
+  position: absolute;
+  top: -61px;
+  right: 0px;
+`;
+
+// 배경 애니메이션
+export const countDownDivStyle = ({ isActive }) => css`
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  top: -60px;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${isActive ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.00)"};
+  transition-property: background-color;
+  transition-timing-function: ease-out;
+  transition-duration: 1s;
+`;
+
+// 글씨 애니메이션
+// grow && fadeOut
+
+export const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+  }
+`;
+
+export const grow = keyframes`
+  from {
+    transform: rotateY(200deg) scale(0);
+    -webkit-transform:rotateY(200deg) scale(0);
+    -moz-transform:rotateY(200deg) scale(0);
+  }
+  to {
+    transform: rotateY(200deg) scale(1.5);
+    -webkit-transform:rotateY(200deg) scale(1.5);
+    -moz-transform:rotateY(200deg) scale(1.5);
+  }
+`;
+
+export const countDownStyle = ({ isActive }) => css`
+  display: ${isActive ? "block !important" : "none !important"};
+  position: absolute;
+  top: 52vh;
+  font-size: 15vw;
+  color: ${isActive ? "white !important" : "black !important"};
+  animation: ${fadeIn} 1s ease forwards, ${grow} 1s ease forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: ${isActive ? "running" : "paused"};
+
+  z-index: 999 !important;
+
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+`;
+
+export const buttonCenter = css`
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const buttonDiv = css`
+  width: 80vw;
+  height: 20vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 68vh;
+
+  button {
+    width: 30vw;
+    height: 15vh;
+
+    background-color: #b1b2ff;
+    font-size: 2.5em;
+    padding-top: 0.3em;
+
+    border-radius: 20px;
+    border: 1px solid transparent;
+  }
+`;
+
+export const TakeAPictureBtn = css`
+  position: absolute;
+
+  left: 50%;
+  transform: translate(-50%, 0%);
+`;
+
+export const SpinnerDiv = css`
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: "40vw";
+  height: "20vh";
+  background-color: "white";
+`;
