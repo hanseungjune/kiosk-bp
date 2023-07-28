@@ -274,3 +274,76 @@ export const BPlogoImageSize = css`
   left: 0px;
   width: 80px;
 `;
+
+
+export const KioskHomeWeatherStyle = css`
+  margin-right: 3vw;
+
+  background-color: #b1b2ff;
+  border-radius: 65px;
+
+  width: 25vw;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const KioskHomeWeatherImg = css`
+  position: absolute;
+  top: 190px;
+  padding: 0;
+`;
+
+export const KioskHomeWeatherTextBox = css`
+  position: absolute;
+  bottom: 160px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .celsius {
+    font-size: 24px;
+    margin: 0;
+
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      display: inline-block;
+      position: absolute;
+    }
+  }
+
+  .windspeed {
+    font-size: 20px;
+    margin: 0;
+  }
+`;
+
+export const ani = keyframes`
+  0%{transform:translate(0,-1px);}
+  100%{transform:translate(0,5px);}
+`;
+
+export const ani2 = keyframes`
+  0%{transform:translate(0,-1px);}
+  100%{transform:translate(0,5px);}
+`;
+
+export const weatherImg = css`
+  width: 200px;
+  height: 200px;
+  animation: ${ani} 1s infinite alternate;
+`;
+
+export const weatherDescriptionStyle = css`
+  position: absolute;
+  top: 80%;
+  left: 32.5%;
+  transform: translate(-50%, -50%);
+  animation: ${ani2} 1s infinite alternate;
+`;

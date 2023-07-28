@@ -7,9 +7,9 @@ export const handlers = [
       return res(
         ctx.status(200),
         ctx.json([
-          { id: 1, name: "Location 1" },
-          { id: 2, name: "Location 2" },
-          { id: 3, name: "Location 3" },
+          { id: 1, name: "구미 메가박스점" },
+          { id: 2, name: "구미 구미역점" },
+          { id: 3, name: "구미 순천향대학교병원" },
         ])
       );
     }
